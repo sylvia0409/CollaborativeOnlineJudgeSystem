@@ -12,5 +12,17 @@ export const PROBLEMS : Problem[] = [
       name: "two sum2",
       desc: "1010102",
       difficulty: "hard"
+    },
+    {
+      id: 3,
+      name: "happy",
+      desc: "new year",
+      difficulty: "medium"
+    },
+    {
+      id: 4,
+      name: "welcome",
+      desc: "hahahaha",
+      difficulty: "super"
     }
     ]
