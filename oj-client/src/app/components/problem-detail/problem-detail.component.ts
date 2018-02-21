@@ -9,12 +9,14 @@ import { ActivatedRoute, Params} from '@angular/router';
 })
 export class ProblemDetailComponent implements OnInit {
   problem : Problem;
-  constructor(@Inject('dataService') private data,
+  constructor(@Inject('dataService') private dataService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params=>{
-      this.problem = this.data.getProblem(+params['id']);
+      this.dataService.getProblem(+params['id'])
+        .then(problem => this.problem = problem)
+        .catch(error => console.log(error));
     })   
   }
 
