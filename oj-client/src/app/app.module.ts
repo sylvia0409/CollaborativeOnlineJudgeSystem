@@ -11,6 +11,7 @@ import { ProblemDetailComponent } from './components/problem-detail/problem-deta
 
 import { DataService } from './services/data.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 import { routing } from './app.routes';
 import { NewProblemComponent } from './components/new-problem/new-problem.component';
@@ -38,8 +39,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   {
     provide: 'authService',
     useClass: AuthService
-  }
- 
+  },
+ {
+   provide: 'authGuard',
+   useClass: AuthGuardService
+ }
   ],
   bootstrap: [AppComponent]
 })

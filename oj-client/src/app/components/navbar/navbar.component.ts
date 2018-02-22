@@ -7,13 +7,11 @@ import { Component, OnInit, Inject } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   title: string = 'COJ System';
-  username: string = 'ssy';
+  username: string = 'Crystal';
 
   constructor(@Inject('authService') private authService) {
-    if(this.authService.isAuthenticated()){
-      this.username = this.authService.getUsername().nickname;
-    }
-    authService.handleAuthentication();
+    if(this.authService.isAuthenticated())
+    this.username = this.authService.getUsername().nickname;
    }
 
   ngOnInit() {
@@ -21,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
   login() {
     this.authService.login();
+    
   }
 
   logout(){

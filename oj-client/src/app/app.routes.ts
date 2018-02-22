@@ -14,7 +14,8 @@ const  appRoutes: Routes = [
     },
     {
         path: 'problems/:id',
-        component: ProblemDetailComponent
+        component: ProblemDetailComponent,
+        canActivate: ['authGuard']
     },
     {
         path: '**',

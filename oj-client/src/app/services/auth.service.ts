@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders} from '@angular/common/http';
-import { Response } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 import * as auth0 from 'auth0-js';
 
 var  webAuth = new auth0.WebAuth({
-  domain:       'sylvia0409.auth0.com',
-  clientID:     'YxjWtync6TNCv7dN5YRzS2TjMSRQpwVU'
+  domain:'sylvia0409.auth0.com',
+  clientID:'YxjWtync6TNCv7dN5YRzS2TjMSRQpwVU'
 });
 
 @Injectable()
@@ -21,17 +18,12 @@ export class AuthService {
     scope: 'openid profile'
   });
 
-  
-
-
-  constructor(public router: Router,private http: HttpClient) { 
+  constructor(public router: Router) { 
     
   }
 
-  
-
-  public login() {
-    this.auth0.authorize();  
+  public login() {   
+    this.auth0.authorize();
   }
   
   public handleAuthentication() {
@@ -40,7 +32,6 @@ export class AuthService {
         window.location.hash = ''; 
         this.setSession(authResult);
         webAuth.client.userInfo(authResult.accessToken, function(err, user) {
-          // Now you have the user's information
           localStorage.setItem('profile', JSON.stringify(user));
         });
         this.router.navigate(['/problems']);
@@ -63,7 +54,7 @@ export class AuthService {
 
   public logout(): void {
     // Remove tokens and expiry time from localStorage
-    localStorage.removeItem('username');
+    localStorage.removeItem('profile');
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
@@ -82,5 +73,6 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('profile'));
   }
 
+  
 
 }
