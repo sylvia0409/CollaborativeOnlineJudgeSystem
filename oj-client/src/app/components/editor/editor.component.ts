@@ -56,6 +56,12 @@ int main() {
         this.collaboration.change(JSON.stringify(e));
       }
     })
+    this.editor.session.getSelection().on('cursor', () => {
+      let cursor = this.editor.session.getSelection().getCursor();
+      this.collaboration.cursorMove(JSON.stringify(cursor));
+    })
+    //show contents written by previous participants
+    this.collaboration.restoreBuffer();
   }
 
   setLanguage(language: string) {
